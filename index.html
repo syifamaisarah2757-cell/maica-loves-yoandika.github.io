@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untuk Yoandika Bagus Pangestu 💖</title>
+
+<style>
+body{
+    margin:0;
+    padding:0;
+    font-family: 'Segoe UI', sans-serif;
+    background: radial-gradient(circle at bottom, #0b0c2a, #000000);
+    color:white;
+    overflow:hidden;
+    text-align:center;
+}
+
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:white;
+    animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+    from{opacity:0.2;}
+    to{opacity:1;}
+}
+
+.container{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    max-width:90%;
+    opacity:0;
+    transition:2s;
+}
+
+.show{
+    opacity:1;
+}
+
+button{
+    padding:10px 20px;
+    border:none;
+    border-radius:20px;
+    background:#ff4da6;
+    color:white;
+    font-size:16px;
+}
+
+.photo{
+    width:120px;
+    border-radius:15px;
+    margin:5px;
+}
+
+#letter{
+    display:none;
+    white-space:pre-line;
+    animation: fadeIn 3s forwards;
+}
+
+@keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+.shooting-star{
+    position:absolute;
+    width:100px;
+    height:2px;
+    background:white;
+    animation:shoot 2s linear;
+}
+
+@keyframes shoot{
+    from{transform:translate(-100px,0);}
+    to{transform:translate(500px,300px);}
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music" src="lagu.mp3"></audio>
+
+<div id="login" class="container show">
+<h2>Masukkan Password 💌</h2>
+<input type="password" id="pass">
+<br><br>
+<button onclick="check()">Buka</button>
+</div>
+
+<div id="content" class="container">
+<div id="letter"></div>
+<br>
+<div id="photos"></div>
+</div>
+
+<script>
+
+// password
+function check(){
+    let pass = document.getElementById("pass").value;
+    if(pass==="ILoveYouMaica"){
+        document.getElementById("login").style.display="none";
+        document.getElementById("content").classList.add("show");
+        startExperience();
+    }else{
+        alert("Password salah sayang 💔");
+    }
+}
+
+// pengalaman mulai
+function startExperience(){
+
+    let music = document.getElementById("music");
+    music.volume = 0;
+    music.play();
+
+    // volume naik pelan
+    let vol = 0;
+    let fade = setInterval(()=>{
+        if(vol<1){
+            vol += 0.05;
+            music.volume = vol;
+        }else{
+            clearInterval(fade);
+        }
+    },300);
+
+    // tampilkan surat
+    typeWriter();
+
+    // shooting star terakhir
+    setTimeout(()=>{
+        let star = document.createElement("div");
+        star.className="shooting-star";
+        star.style.top="20%";
+        star.style.left="10%";
+        document.body.appendChild(star);
+    },20000);
+
+}
+
+// efek ketik pelan
+const text = `Terima kasih sudah hadir di hidupku.
+Terima kasih sudah memilih untuk tetap tinggal,
+bahkan ketika keadaan tidak selalu mudah.
+
+Kamu adalah alasan kenapa aku percaya
+bahwa cinta itu benar-benar ada.
+
+Maaf kalau aku pernah membuat kamu kecewa.
+Maaf kalau sikapku pernah melukai hatimu.
+Aku masih belajar menjadi yang terbaik untukmu,
+dan aku tidak akan berhenti belajar.
+
+Ada satu hal yang ingin aku jujur akui…
+
+Sejak kamu hadir,
+hidupku terasa jauh lebih berarti.
+Hari-hariku punya tujuan.
+Senyumku punya alasan.
+
+Aku sudah terlalu nyaman dengan caramu menenangkan aku,
+terlalu terbiasa dengan perhatian kecilmu,
+dan terlalu bersyukur memiliki kamu di sisiku.
+
+Mungkin aku tidak selalu pandai menunjukkan perasaan,
+tapi percayalah…
+aku menghargai setiap detik yang kita jalani bersama.
+
+Aku ingin terus berjalan denganmu.
+Bukan karena takut sendirian,
+tapi karena bersamamu terasa seperti rumah.
+
+Kalau suatu hari nanti keadaan menguji kita,
+aku ingin kamu tahu,
+aku akan tetap berusaha bertahan dan memperjuangkan kita.
+
+Karena bagiku,
+kamu bukan sekadar seseorang yang singgah.
+Kamu adalah bagian penting dari cerita hidupku.
+
+Dan selama kamu masih mau bersamaku,
+aku akan terus memilih kamu,
+lagi dan lagi. 💖`;
+
+function typeWriter(){
+    let i=0;
+    let speed=50;
+    function typing(){
+        if(i<text.length){
+            document.getElementById("letter").innerHTML += text.charAt(i);
+            i++;
+            setTimeout(typing,speed);
+        }
+    }
+    typing();
+}
+
+// bintang
+for(let i=0;i<100;i++){
+    let star=document.createElement("div");
+    star.className="star";
+    star.style.top=Math.random()*100+"%";
+    star.style.left=Math.random()*100+"%";
+    document.body.appendChild(star);
+}
+
+// kembang api klik
+document.body.addEventListener("click",function(e){
+    let fire=document.createElement("div");
+    fire.style.position="absolute";
+    fire.style.left=e.pageX+"px";
+    fire.style.top=e.pageY+"px";
+    fire.innerHTML="✨";
+    fire.style.fontSize="20px";
+    document.body.appendChild(fire);
+    setTimeout(()=>fire.remove(),1000);
+});
+
+</script>
+
+</body>
+</html>
